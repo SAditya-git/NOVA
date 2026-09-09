@@ -1,4 +1,4 @@
-import { Clock3, MapPin, ArrowUpRight } from 'lucide-react'
+import { Clock3, MapPin, ArrowUpRight, LocateFixed } from 'lucide-react'
 import { Link } from 'react-router-dom'
 import { Badge } from '../ui/Badge'
 import { Card, CardContent } from '../ui/Card'
@@ -7,6 +7,14 @@ const severityVariant = {
   Critical: 'critical',
   High: 'warning',
   Medium: 'secondary',
+}
+
+function formatCoordinates(coordinates) {
+  if (!Array.isArray(coordinates) || coordinates.length < 2) {
+    return 'GPS unavailable'
+  }
+
+  return `${Number(coordinates[0]).toFixed(4)}, ${Number(coordinates[1]).toFixed(4)}`
 }
 
 export function IncidentCard({ incident }) {
@@ -34,6 +42,10 @@ export function IncidentCard({ incident }) {
             <span>{incident.locationName}</span>
           </div>
           <div className="flex items-center gap-2 text-slate-400">
+            <LocateFixed className="h-4 w-4 text-cyan-300" />
+            <span>{formatCoordinates(incident.coordinates)}</span>
+          </div>
+          <div className="flex items-center gap-2 text-slate-400">
             <Clock3 className="h-4 w-4 text-cyan-300" />
             <span>{new Date(incident.timestamp).toLocaleString('en-IN')}</span>
           </div>
@@ -41,7 +53,7 @@ export function IncidentCard({ incident }) {
 
         <div className="mt-auto flex items-center justify-between rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-sm">
           <span className="text-slate-400">AI confidence</span>
-          <span className="font-semibold text-cyan-200">{incident.confidence}%</span>
+          <span className="font-semibold text-cyan-200">{Number(incident.confidence).toFixed(1)}%</span>
         </div>
       </CardContent>
     </Card>

@@ -1,13 +1,11 @@
 import { Bell, Search } from 'lucide-react'
 import { useLocation } from 'react-router-dom'
 import { useAppContext } from '../../context/AppContext'
-import { useClock } from '../../hooks/useClock'
 import { Badge } from '../ui/Badge'
 import { Input } from '../ui/Input'
 
 export function TopBar() {
   const { searchTerm, setSearchTerm, cityLabel } = useAppContext()
-  const { dateLabel, timeLabel } = useClock()
   const location = useLocation()
   const showSearch = location.pathname === '/incidents'
 
@@ -40,22 +38,15 @@ export function TopBar() {
           </div>
         ) : null}
 
-        <div className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/[0.04] px-4 py-2.5 text-sm text-slate-300">
-          <div>
-            <p className="font-medium text-slate-100">{dateLabel}</p>
-            <p className="text-xs text-slate-400">{timeLabel}</p>
-          </div>
-
-          <div className="flex items-center gap-2">
-            <button
-              type="button"
-              className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/70 text-slate-200 transition hover:bg-white/[0.06]"
-              aria-label="Notifications"
-            >
-              <Bell className="h-4 w-4" />
-              <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-rose-400 ring-2 ring-slate-950" />
-            </button>
-          </div>
+        <div className="flex items-center gap-2">
+          <button
+            type="button"
+            className="relative flex h-10 w-10 items-center justify-center rounded-2xl border border-white/10 bg-slate-950/70 text-slate-200 transition hover:bg-white/[0.06]"
+            aria-label="Notifications"
+          >
+            <Bell className="h-4 w-4" />
+            <span className="absolute right-2 top-2 h-2.5 w-2.5 rounded-full bg-rose-400 ring-2 ring-slate-950" />
+          </button>
         </div>
       </div>
     </header>

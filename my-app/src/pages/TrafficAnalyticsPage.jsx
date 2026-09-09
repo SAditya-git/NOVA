@@ -4,6 +4,7 @@ import { SectionHeader } from '../components/dashboard/SectionHeader'
 import { StatCard } from '../components/dashboard/StatCard'
 import { ViolationTrendChart } from '../components/analytics/ViolationTrendChart'
 import { SeverityDistributionChart } from '../components/analytics/SeverityDistributionChart'
+import { hourlyTrend } from '../data/analytics'
 
 export function TrafficAnalyticsPage() {
   const [analytics, setAnalytics] = useState(null)
@@ -27,7 +28,7 @@ export function TrafficAnalyticsPage() {
       </div>
 
       <div className="grid gap-4 xl:grid-cols-2">
-        <ViolationTrendChart data={analytics?.hourlyTrend ?? []} />
+        <ViolationTrendChart data={analytics?.hourlyTrend?.length ? analytics.hourlyTrend : hourlyTrend} />
         <SeverityDistributionChart data={analytics?.severityBreakdown ?? []} />
       </div>
 

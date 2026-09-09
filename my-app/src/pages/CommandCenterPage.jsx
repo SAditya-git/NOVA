@@ -96,7 +96,7 @@ export function CommandCenterPage() {
 
       <div className="grid gap-4 xl:grid-cols-[1.15fr_0.85fr]">
         <div className="space-y-4">
-          <ViolationTrendChart data={commandCenterTrend} dataKey="violations" seriesLabel="Violations" />
+          <ViolationTrendChart data={commandCenterTrend} dataKey="violations" seriesLabel="Violations" xAxisKey="time" />
         </div>
 
         <Card className="border-white/10 bg-white/[0.03]">

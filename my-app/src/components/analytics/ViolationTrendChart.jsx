@@ -9,7 +9,7 @@ import {
 } from 'recharts'
 import { Card, CardContent } from '../ui/Card'
 
-export function ViolationTrendChart({ data, dataKey = 'incidents', seriesLabel = 'Incidents' }) {
+export function ViolationTrendChart({ data, dataKey = 'incidents', seriesLabel = 'Incidents', xAxisKey = 'hour' }) {
   return (
     <Card className="border-white/10 bg-white/[0.03]">
       <CardContent className="p-5">
@@ -27,7 +27,7 @@ export function ViolationTrendChart({ data, dataKey = 'incidents', seriesLabel =
                 </linearGradient>
               </defs>
               <CartesianGrid strokeDasharray="3 3" stroke="rgba(148, 163, 184, 0.12)" />
-              <XAxis dataKey="hour" stroke="#94a3b8" tickLine={false} axisLine={false} />
+              <XAxis dataKey={xAxisKey} stroke="#94a3b8" tickLine={false} axisLine={false} />
               <YAxis stroke="#94a3b8" tickLine={false} axisLine={false} />
               <Tooltip
                 contentStyle={{

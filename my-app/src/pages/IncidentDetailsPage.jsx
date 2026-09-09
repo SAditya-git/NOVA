@@ -47,14 +47,14 @@ export function IncidentDetailsPage() {
           <div className="flex flex-col gap-4 lg:flex-row lg:items-start lg:justify-between">
             <div>
               <Badge variant="critical">{incident.severity}</Badge>
-              <h2 className="mt-4 text-2xl font-semibold text-slate-50">{incident.id}</h2>
+              <h2 className="mt-4 text-2xl font-semibold tracking-[0.08em] text-slate-50">{incident.vehicleNumber}</h2>
               <p className="mt-2 text-sm text-slate-400">
                 {incident.violationType} detected against vehicle {incident.vehicleNumber}.
               </p>
             </div>
             <div className="rounded-2xl border border-white/10 bg-slate-950/60 px-4 py-3 text-right">
               <p className="text-xs uppercase tracking-[0.24em] text-slate-500">AI confidence</p>
-              <p className="mt-1 text-3xl font-semibold text-cyan-200">{incident.confidence}%</p>
+              <p className="mt-1 text-3xl font-semibold text-cyan-200">{Number(incident.confidence).toFixed(1)}%</p>
             </div>
           </div>
 
@@ -76,6 +76,16 @@ export function IncidentDetailsPage() {
               </div>
             </div>
           </div>
+
+          {incident.evidenceImageUrl && (
+            <div className="overflow-hidden rounded-[28px] border border-white/10 bg-slate-950/50">
+              <img
+                src={incident.evidenceImageUrl}
+                alt={`Evidence for ${incident.violationType}`}
+                className="max-h-[520px] w-full object-contain"
+              />
+            </div>
+          )}
         </CardContent>
       </Card>
     </div>
